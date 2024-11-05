@@ -10,7 +10,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, image }) => {
   if (!isOpen || !image) return null;
 
   return (
-    <div className="modalWrapper" onClick={onClose}>
+    <div className="modalWrapper" data-testid="modal" onClick={onClose}>
       <div className="modalImageWrapper" onClick={(e) => e.stopPropagation()}>
         <img
           src={image.url}

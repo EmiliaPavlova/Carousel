@@ -25,4 +25,6 @@ https://picsum.photos/
 The project uses React + TypeScript + Vite:
 - install: `npm install`
 - run: `npm run dev`
+- test: `npm run test`
+- test coverage: `npx vitest --coverage`
 

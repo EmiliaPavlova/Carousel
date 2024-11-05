@@ -56,7 +56,7 @@ const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading })
 
   return (
     <>
-      <div className="carouselWrapper" ref={carouselRef}>
+      <div className="carouselWrapper" ref={carouselRef} data-testid="carousel">
         {images.map((image, index) => (
           <div
             key={index}
