@@ -4,6 +4,7 @@
   scroll-snap-type: x mandatory;
   padding: 10px 0;
   white-space: nowrap;
+  overflow-x: auto;
 }
 
 .carouselImageWrapper {
@@ -13,7 +14,7 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  max-width: 300px;
+  width: 500px;
   aspect-ratio: 16/9;
   scroll-snap-align: center;
   background-color: #f3f3f3;

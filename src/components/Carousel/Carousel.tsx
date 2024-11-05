@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import Modal from '../Modal/Modal';
 import './Carousel.css';
 
@@ -12,7 +12,7 @@ interface CarouselProps {
   loading: boolean;
 }
 
-const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, loadMore, loading }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{
     url: string;
@@ -24,11 +24,8 @@ const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading })
   const handleScroll = useCallback(() => {
     const carousel = carouselRef.current;
     if (carousel) {
-      const scrollLeft = carousel.scrollLeft;
-      const scrollWidth = carousel.scrollWidth;
-      const clientWidth = carousel.clientWidth;
-
-      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+      const { scrollLeft, scrollWidth, clientWidth } = carousel;
+      if (scrollLeft + clientWidth >= scrollWidth - 20) {
         loadMore();
       }
     }
@@ -37,9 +34,10 @@ const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading })
   useEffect(() => {
     const carousel = carouselRef.current;
     if (carousel) {
-      carousel.addEventListener("scroll", handleScroll);
+      carousel.addEventListener('scroll', handleScroll);
+
       return () => {
-        carousel.removeEventListener("scroll", handleScroll);
+        carousel.removeEventListener('scroll', handleScroll);
       };
     }
   }, [handleScroll]);
@@ -64,7 +62,7 @@ const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading })
             onClick={() => handleImageClick({ url: image.url, author: image.author })}
           >
             <img
-              src={`${image.url}?w=300&h=200`}
+              src={`${image.url}`}
               alt={image.author}
               loading="lazy"
               className="carouselImage"
@@ -75,9 +73,9 @@ const PicsumCarousel: React.FC<CarouselProps>  = ({ images, loadMore, loading })
         {loading && <p className="carouselLoading">Loading more...</p>}
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal} image={selectedImage} />
+      {isModalOpen && <Modal onClose={closeModal} image={selectedImage} />}
     </>
   );
 };
 
-export default PicsumCarousel;
+export default Carousel;

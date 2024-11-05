@@ -13,18 +13,13 @@ describe('Modal', () => {
     vi.clearAllMocks();
   });
 
-  it('does not render when isOpen is false', () => {
-    render(<Modal isOpen={false} onClose={onCloseMock} image={sampleImage} />);
-    expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
-  });
-
   it('does not render when image is null', () => {
-    render(<Modal isOpen={true} onClose={onCloseMock} image={null} />);
+    render(<Modal onClose={onCloseMock} image={null} />);
     expect(screen.queryByTestId('modal')).not.toBeInTheDocument();
   });
 
   it('renders correctly when isOpen is true and image is provided', () => {
-    render(<Modal isOpen={true} onClose={onCloseMock} image={sampleImage} />);
+    render(<Modal onClose={onCloseMock} image={sampleImage} />);
     const imgElement = screen.getByAltText(sampleImage.author);
     expect(imgElement).toBeInTheDocument();
     expect(imgElement).toHaveAttribute('src', sampleImage.url);
@@ -33,21 +28,21 @@ describe('Modal', () => {
   });
 
   it('calls onClose when clicking outside the modal content', () => {
-    render(<Modal isOpen={true} onClose={onCloseMock} image={sampleImage} />);
+    render(<Modal onClose={onCloseMock} image={sampleImage} />);
     const modalWrapper = screen.getByTestId('modal');
     fireEvent.click(modalWrapper);
     expect(onCloseMock).toHaveBeenCalled();
   });
 
   it('does not call onClose when clicking inside the modal content', () => {
-    render(<Modal isOpen={true} onClose={onCloseMock} image={sampleImage} />);
+    render(<Modal onClose={onCloseMock} image={sampleImage} />);
     const modalContent = screen.getByAltText(sampleImage.author);
     fireEvent.click(modalContent);
     expect(onCloseMock).not.toHaveBeenCalled();
   });
 
   it('calls onClose when clicking the close button', () => {
-    render(<Modal isOpen={true} onClose={onCloseMock} image={sampleImage} />);
+    render(<Modal onClose={onCloseMock} image={sampleImage} />);
     const closeButton = screen.getByRole('button', { name: /×/i });
     fireEvent.click(closeButton);
     expect(onCloseMock).toHaveBeenCalled();

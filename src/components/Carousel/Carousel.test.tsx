@@ -18,7 +18,7 @@ describe('Carousel', () => {
     sampleImages.forEach(image => {
       const imgElement = screen.getByAltText(image.author);
       expect(imgElement).toBeInTheDocument();
-      expect(imgElement).toHaveAttribute('src', `${image.url}?w=300&h=200`);
+      expect(imgElement).toHaveAttribute('src', image.url);
     });
   });
 

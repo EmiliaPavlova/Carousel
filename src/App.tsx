@@ -1,6 +1,6 @@
 import Carousel from './components/Carousel/Carousel'
 import usePhotos from './hooks/usePhotos';
-import './App.css'
+import './App.css';
 
 function App() {
   const { photos, loading, error, fetchPhotos } = usePhotos();
