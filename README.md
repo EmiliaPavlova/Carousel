@@ -1,7 +1,8 @@
-
 # Infinite Image Carousel
 
-### Technical Assessment Task
+An infinite image carousel using React.
+
+## Technical Assessment Task
 
 Create an infinite image carousel (the items loop when the either end is reached) using React. Navigation inside the carousel should only be triggered by scroll, rather than arrows or buttons.
 
